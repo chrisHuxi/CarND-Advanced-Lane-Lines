@@ -19,12 +19,11 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image1]: ./writeup_img/1.png "Undistorted chessboard"
+[image2]: ./writeup_img/undis.png "Undistorted"
+[image3]: ./writeup_img/thres.png "threshold"
+[image4]: ./writeup_img/trans.png "transform"
+[image5]: ./writeup_img/draw.png "draw result"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
