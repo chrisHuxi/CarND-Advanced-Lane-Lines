@@ -66,7 +66,7 @@ I used a combination of magnitude gradient thresholds and HLS' s channel thresho
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The code for my perspective transform includes a function called `warper()`, which appears in the 7th code cell of the IPython notebook.  The `TransformPerspective()` function takes as inputs an image (`img`).  I chose the hardcode the source and destination points in the following manner:
 
 ```python
 src = np.float32(
@@ -96,17 +96,17 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this, actually code from course is really helpful for this part:
+Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this, actually code from course is really helpful for this part. And to get smoother result, I define two polynomial fit function: `FitPolynomial()` and `FitPolynomialEasy()` in 9th code cell. One for first frame of video and another for next frames. In order to judge if a frame is first frame or not, I use global variable, it seems wild but it works.
 
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in 9th code cell in my ipython notebook.##########333
+I did this in 7th code cell in my ipython notebook. As for radius of curvature, I use formula provided in course, and for position offset, I caluculate distance of image midpoint(1280/2 = 460 pixel) and two lines' midpoint, then judge this value is positive or negative, that means vehicle has right offset or left offset. And convert pixel to meters we can get real distence.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in 11th code cell `DrawInImg()`.  Here is an example of my result on a test image:
 
 ![alt text][image6]
 
@@ -116,7 +116,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./test_videos_output_final.mp4)
 
 ---
 
@@ -125,3 +125,7 @@ Here's a [link to my video result](./project_video.mp4)
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+
+I spend a lot of time to turn combination of thresholder, including different methods and different parameter. first I use combination of HLS' s channel, magnitude gradient, direction gradient , and I get a not bad result in all image but `test3.jpg`, because the shadow in the lane really influence fit result a lot. To solve this problem I add HLS' l channel to reduce shadow, then I get a better result. But when I apply this methods to video I find it dosen't work, especially in alternating black and white pavement. So I have to change method again. And finally I simply use combination of magnitude gradient thresholds and HLS' s channel, it get a rough result in test image but better result in video.
+
+Maybe I should try another combination, any idea about this?
